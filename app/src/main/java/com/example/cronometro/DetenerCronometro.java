@@ -2,7 +2,7 @@ package com.example.cronometro;
 
 public class DetenerCronometro {
     private boolean parado=false;
-    //false--->hilo esta corriendo
+    //false--->el hilo esta despierto
     //true---> el hilo esta parado
 
     //llamamos a este metodo y nos devuelve un booleano de los de arriba, en funcion de si es true o false
