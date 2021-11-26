@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Cronometro extends Observable implements Runnable {
+    //Atributos
     private int horas=0,minutos=0,segundos=0;
     private String tiempo;
     private Observer observer;
@@ -14,22 +15,27 @@ public class Cronometro extends Observable implements Runnable {
     private int x;
 
 
-
+    //Constructor
     public Cronometro() {
         super();
         this.nombre = nombre;
         this.detenido.setParado(false);
     }
 
+    //Llamada a la clase DetenerCronometro (get)
     public DetenerCronometro getSuspendido() {
         return detenido;
     }
 
+
+    //Llamada a la clase DetenerCronometro (set)
     public void setSuspendido(DetenerCronometro detenido) {
 
         this.detenido = detenido;
     }
 
+
+    //Metodo que implementa de la interfaz Runnable y donde vamos a meter todo lo que se va a ejecutar en el hilo
     @Override
     public void run() {
         x=0;
@@ -46,9 +52,9 @@ public class Cronometro extends Observable implements Runnable {
         }
     }
 
-    private void ejecutarCronometro(int x) {
 
-        //tiempo="00:00:00";
+    //Metodo que genera el formato de horas minutos y segundos, (incrementando y modificando sus respectivos valores) en base al contador del run
+    private void ejecutarCronometro(int x) {
         this.tiempo=(cambiarFormato(horas)+":"+cambiarFormato(minutos)+":"+cambiarFormato(segundos));
         this.setChanged();
         this.notifyObservers(this.tiempo);
@@ -79,11 +85,5 @@ public class Cronometro extends Observable implements Runnable {
         }
         return result;
     }
-
-
-
-
-
-
 
 }

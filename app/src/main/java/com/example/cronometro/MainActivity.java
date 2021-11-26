@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
     Button reiniciar;
     Button iniciar;
 
+
+    //Metodo que setea los campos al iniciar la vista
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     }
 
+
+    //Metodo del observer que aplica los cambios cada vez que se lo notifica desde el Cronometro
     @Override
     public void update(Observable o, Object arg) {
         tv_Tiempo.setText((CharSequence) arg);
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     }
 
 
+    //Metodo para iniciar el cronometro, donde se inicia el hilo y se setea cada boton correctamente
     public void Iniciar(View view){
         c=new Cronometro();
         c.addObserver(this);
@@ -51,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements Observer {
         reiniciar.setEnabled(true);
     }
 
+
+
+    //Metodo para parar el hilo y para setear los botones acorde al estado del cronometro
     public void Parar(View view){
         //Si el hilo no esta parado lo detenine y los botones cambian de valor
         if(!c.getSuspendido().getParado()){
@@ -67,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     }
 
+
+    //Metodo para reiniciar el cronometro donde se interrumpe el hilo y se establecen los botones por defecto de la app
     public void Reiniciar(View view){
         t.interrupt();
         if(t.isInterrupted()){
@@ -77,7 +87,5 @@ public class MainActivity extends AppCompatActivity implements Observer {
             iniciar.setText("Iniciar");
             iniciar.setEnabled(true);
         }
-
-
     }
 }
